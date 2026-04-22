@@ -15,7 +15,7 @@ Two modes:
 
 ## Toolchain detection
 
-Read `package.json` once. Use the package manager that matches the lockfile: `pnpm-lock.yaml` → pnpm, `yarn.lock` → yarn, `bun.lockb`/`bun.lock` → bun, otherwise npm.
+Read `package.json` once. Use pnpm (`pnpm-lock.yaml` must be present).
 
 Map checks to scripts in this order, running the first one that exists per bucket. Skip a bucket cleanly if no script matches.
 
@@ -29,7 +29,7 @@ Map checks to scripts in this order, running the first one that exists per bucke
 | Test:e2e      | `test:e2e`, `e2e`                                                     |
 | Build         | `build`                                                               |
 
-If no typecheck script exists but `tsconfig.json` does, fall back to `npx tsc --noEmit` (use the detected PM's dlx/exec equivalent).
+If no typecheck script exists but `tsconfig.json` does, fall back to `pnpm exec tsc --noEmit`.
 
 ## Fast mode (default)
 
@@ -37,8 +37,8 @@ Run these in parallel when they're independent and fast: typecheck, lint, test, 
 
 ## Deep mode (`--deep`)
 
-1. **Environment check** — confirm required env vars are set (read `.env.example` if present) and any external services referenced by tests are reachable.
-2. **Clean install** — `npm ci` / `pnpm install --frozen-lockfile` / `yarn install --frozen-lockfile` / `bun install --frozen-lockfile`.
+1. **Environment check** — confirm required env vars are set and any external services referenced by tests are reachable.
+2. **Clean install** — `pnpm install --frozen-lockfile`.
 3. **Sequenced tests** — run `test:unit` → `test:integration` → `test:e2e` in that order, stopping on first red. If the project only has a single `test` script, run that.
 4. **Build** last.
 
