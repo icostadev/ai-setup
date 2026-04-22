@@ -2,7 +2,7 @@ Boris Cherny's Claude Code workflow tips — parallel sessions, plan mode, subag
 
 # Boris Cherny's Claude Code Workflow Tips
 
-_Source: howborisusesclaudecode.com · Compiled by @cbmono · Version 3.1.1 (2026-04-22)_
+_Source: howborisusesclaudecode.com · Compiled by @cbmono · Version 3.1.2 (2026-04-22)_
 
 ## 1. Parallel Execution
 
@@ -144,7 +144,7 @@ Think of subagents as automations for the most common PR workflows:
 
 - Append "use subagents" to any request where you want Claude to throw more compute at the problem
 - Offload individual tasks to subagents to keep your main agent's context window clean and focused
-- Route permission requests to Opus 4.5 via a hook - let it scan for attacks and auto-approve the safe ones
+- Route permission requests to Opus 4.7 via a hook - let it scan for attacks and auto-approve the safe ones
 
 ---
 
