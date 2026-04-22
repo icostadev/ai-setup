@@ -114,7 +114,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 -c \"import sys,json; cmd=json.load(sys.stdin).get('command',''); blocked=any(p in cmd for p in ['/.ssh','/.aws']); print('Blocked: command references a protected path (.ssh or .aws)') if blocked else None; sys.exit(2 if blocked else 0)\""
+            "command": "python3 -c \"import sys,json,re; cmd=json.load(sys.stdin).get('command',''); blocked=bool(re.search(r'/\\.(ssh|aws)([^a-zA-Z0-9_-]|$)', cmd)); print('Blocked: command references a protected path (.ssh or .aws)') if blocked else None; sys.exit(2 if blocked else 0)\""
           }
         ]
       }
