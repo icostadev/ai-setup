@@ -10,7 +10,7 @@ Built for Opus 4.7 with stacked-PR workflows in mind.
 
 1. Copy the `.claude/` folder into your project.
 2. Start Claude Code in your terminal: `claude`.
-3. Run `/init` and then `/boris` if you want to load Boris Cherny's workflow best-practices/tips.
+3. Run `/init` to generate a `CLAUDE.md` for your project.
 4. Done.
 
 Check the list of agents and commands in `.claude/` — or see [What's inside](#whats-inside) below.
@@ -42,7 +42,6 @@ One `.md` per command; filename becomes `/<name>`. No frontmatter required; `$AR
 | Command        | What it does                                                                                  | Dispatches agents             |
 | -------------- | --------------------------------------------------------------------------------------------- | ----------------------------- |
 | `/acp`         | Stage, commit with a generated message, and push (stack-aware)                                | —                             |
-| `/boris`       | Boris Cherny's Claude Code workflow tips (parallel sessions, hooks, plan mode)                | —                             |
 | `/grill`       | Devil's advocate on your own diff — find what's wrong before a reviewer does                  | —                             |
 | `/plan-review` | Write a plan, then spin up a reviewer before implementation                                   | code-architect                |
 | `/rabbit`      | Run CodeRabbit review on the current branch against `main`                                    | —                             |

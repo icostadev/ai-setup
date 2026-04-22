@@ -38,7 +38,6 @@ One `.md` per command in `.claude/commands/`. Filename (minus `.md`) is the comm
 | Command        | What it does                                                               | Dispatches agents             |
 | -------------- | -------------------------------------------------------------------------- | ----------------------------- |
 | `/acp`         | Stage, commit with a generated message, push (stack-aware)                 | —                             |
-| `/boris`       | Boris Cherny's workflow tips & best practices                              | —                             |
 | `/grill`       | Grill your own diff — correctness, concurrency, edge cases                 | —                             |
 | `/plan-review` | Write a plan, then spin up a reviewer before implementation                | code-architect                |
 | `/rabbit`      | CodeRabbit review on the current branch against `main`                     | —                             |

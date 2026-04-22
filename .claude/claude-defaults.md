@@ -1,6 +1,6 @@
 # Claude Code defaults for this project
 
-Session-level rules. Derived from [howborisusesclaudecode.com](https://howborisusesclaudecode.com); full tips: `/boris`.
+Session-level rules. Derived from [howborisusesclaudecode.com](https://howborisusesclaudecode.com).
 
 ## Planning & thinking (Opus 4.7)
 
