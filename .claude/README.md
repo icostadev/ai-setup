@@ -29,7 +29,7 @@ Defaults shipped by this repo. See the [top-level README](../README.md) for inst
 | `oncall-guide`    | Sonnet | Diagnoses test or CI failures and classifies the cause                                     | `/verify` (on failure)                        |
 | `stack-navigator` | Sonnet | Reads `gh stack view` and proposes the next safe action                                    | `/stack` (no args)                            |
 
-Recently-changed-code cleanup uses the **built-in** `/simplify` skill — no custom agent needed.
+Recently-changed-code cleanup uses the **built-in** `/simplify` skill (a Claude Code built-in, not a command this repo ships) — no custom agent needed.
 
 ## Commands
 

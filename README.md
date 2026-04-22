@@ -33,7 +33,7 @@ Generic Node/TS agents — they infer your toolchain from `package.json` instead
 | **oncall-guide**    | Sonnet | Diagnoses test/CI failures and classifies the cause                                | `/verify` (on failure)   |
 | **stack-navigator** | Sonnet | Reads `gh stack view` and proposes the next safe action in a stacked-PR flow       | `/stack` (no args)       |
 
-For cleaning up recently changed code, use the built-in `/simplify` skill — that's what it's for.
+For cleaning up recently changed code, use the built-in `/simplify` skill (a Claude Code built-in, not a command this repo ships) — that's what it's for.
 
 ### Slash commands (`.claude/commands/`)
 
