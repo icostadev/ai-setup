@@ -2,8 +2,8 @@ Stage all changes, create a commit with a descriptive message, and push to the r
 
 ## Steps
 
-1. `git add -A` to stage all changes.
-2. Run `git diff --cached` and `git status` to understand what's being committed.
+1. Run `git status` and `git diff` to review the working tree before staging anything.
+2. `git add -A` to stage all changes.
 3. Write a concise, descriptive commit message based on the changes. If `$ARGUMENTS` is provided, use it verbatim as the commit message instead.
 4. Commit.
 5. **Decide how to push:**
