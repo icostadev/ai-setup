@@ -187,7 +187,7 @@ mempalace init .
 
 **Wire into Claude Code:** copy the MCP + hooks block from `.claude/settings.mempalace.example.json` into your `.claude/settings.json` (or `~/.claude/settings.json` for user-wide). The example uses `PreCompact` and `Stop` hooks to mine the session before context compaction and at turn end.
 
-The `/save` skill auto-detects mempalace and runs `mempalace mine` if the CLI is on your `PATH`.
+The `/save` command auto-detects mempalace and runs `mempalace mine` if the CLI is on your `PATH`.
 
 See [mempalaceofficial.com/guide/hooks](https://mempalaceofficial.com/guide/hooks) for the canonical hook commands — the example file uses reasonable defaults but check upstream for the current syntax.
 
