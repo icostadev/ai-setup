@@ -10,7 +10,7 @@ Built for Opus 4.7 with stacked-PR workflows in mind.
 
 1. Copy the `.claude/` folder into your project.
 2. Start Claude Code in your terminal: `claude`.
-3. Run `/init` and then `/boris` if you want to load Boris Cherny's workflow best-practices/tips.
+3. Run `/init` to generate a `CLAUDE.md` for your project.
 4. Done.
 
 Check the list of agents and commands in `.claude/` — or see [What's inside](#whats-inside) below.
@@ -28,12 +28,12 @@ Generic Node/TS agents — they infer your toolchain from `package.json` instead
 | Agent               | Model  | Purpose                                                                            | Invoked by commands      |
 | ------------------- | ------ | ---------------------------------------------------------------------------------- | ------------------------ |
 | **build-validator** | Sonnet | Typecheck / lint / test / build. `--deep` = clean-install + sequenced unit→int→e2e | `/verify`                |
-| **code-architect**  | Opus   | Staff-level review of staged + unstaged changes                                    | `/plan-review`, `/grill` |
+| **code-architect**  | Opus   | Staff-level review of staged + unstaged changes                                    | `/plan-review`           |
 | **deep-bug-scan**   | Opus   | Deep scan for logic bugs, null risks, race conditions, SQL issues, weak tests      | `/scan`                  |
 | **oncall-guide**    | Sonnet | Diagnoses test/CI failures and classifies the cause                                | `/verify` (on failure)   |
 | **stack-navigator** | Sonnet | Reads `gh stack view` and proposes the next safe action in a stacked-PR flow       | `/stack` (no args)       |
 
-For cleaning up recently changed code, use the built-in `/simplify` skill — that's what it's for.
+For cleaning up recently changed code, use the built-in `/simplify` skill (a Claude Code built-in, not a command this repo ships) — that's what it's for.
 
 ### Slash commands (`.claude/commands/`)
 
@@ -42,13 +42,12 @@ One `.md` per command; filename becomes `/<name>`. No frontmatter required; `$AR
 | Command        | What it does                                                                                  | Dispatches agents             |
 | -------------- | --------------------------------------------------------------------------------------------- | ----------------------------- |
 | `/acp`         | Stage, commit with a generated message, and push (stack-aware)                                | —                             |
-| `/boris`       | Boris Cherny's Claude Code workflow tips (parallel sessions, hooks, plan mode)                | —                             |
 | `/grill`       | Devil's advocate on your own diff — find what's wrong before a reviewer does                  | —                             |
 | `/plan-review` | Write a plan, then spin up a reviewer before implementation                                   | code-architect                |
 | `/rabbit`      | Run CodeRabbit review on the current branch against `main`                                    | —                             |
 | `/save`        | Persist durable context to memory (+ mempalace if installed), then compact                    | —                             |
 | `/scan [dir]`  | Deep bug scan of a folder; appends findings to `.claude/potential-bugs.md`                    | deep-bug-scan                 |
-| `/stack`       | gh-stack wrapper (bare = smart recommendation, args = specific actions)                       | stack-navigator               |
+| `/stack`       | gh-stack wrapper (bare = smart recommendation, args = specific actions)                       | stack-navigator (no args)     |
 | `/techdebt`    | Scan for duplication/dead code; defer/apply/reject per item. Backlog in `.claude/techdebt.md` | —                             |
 | `/verify`      | Pre-PR gate: typecheck / lint / test / build. `--deep` = full install + e2e                   | build-validator, oncall-guide |
 
@@ -58,11 +57,10 @@ Pre-allows common safe operations so you see fewer permission prompts:
 
 - Read-only git and `gh` commands
 - `gh stack` navigation (view, up, down, top, bottom, checkout)
-- Package-manager `run` / `install` / `test` for npm, pnpm, yarn, bun (scoped — `yarn`, `bunx`, `pnpm dlx` are **not** wildcarded)
-- `npx tsc`, `eslint`, `prettier`, `vitest`, `jest` (and `bunx` / `yarn` equivalents)
+- pnpm `run` / `install` / `test` / `exec` and workspace-scoped variants (`-F` / `--filter`) — `dlx` and `create` are **denied** (execute arbitrary packages)
 - `Read` / `Edit` / `Write` scoped to the current repo (`./**`) — not the whole filesystem
 
-And denies dangerous defaults: `git push --force` (common orderings), `git reset --hard`, `rm -rf /`, `.env` reads **and** writes, SSH keys (read/edit/write), AWS credentials (read/edit/write), `sudo`.
+And denies dangerous defaults: `git push --force` (common orderings), `git reset --hard`, `rm -rf` (all targets — including `node_modules`), `.env` reads **and** writes, `~/.ssh` and `~/.aws` reads/writes/bash commands, `sudo`.
 
 > **Note on deny patterns.** Claude Code matches Bash deny rules positionally, not semantically. We cover the two most common force-push orderings (`git push --force …` and `git push … --force`), but a pathological ordering could still slip through. If that matters to your team, add a `PreToolUse` hook in `settings.local.json`.
 
@@ -187,7 +185,7 @@ mempalace init .
 
 **Wire into Claude Code:** copy the MCP + hooks block from `.claude/settings.mempalace.example.json` into your `.claude/settings.json` (or `~/.claude/settings.json` for user-wide). The example uses `PreCompact` and `Stop` hooks to mine the session before context compaction and at turn end.
 
-The `/save` skill auto-detects mempalace and runs `mempalace mine` if the CLI is on your `PATH`.
+The `/save` command auto-detects mempalace and runs `mempalace mine` if the CLI is on your `PATH`.
 
 See [mempalaceofficial.com/guide/hooks](https://mempalaceofficial.com/guide/hooks) for the canonical hook commands — the example file uses reasonable defaults but check upstream for the current syntax.
 
