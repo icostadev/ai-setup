@@ -58,8 +58,7 @@ Pre-allows common safe operations so you see fewer permission prompts:
 
 - Read-only git and `gh` commands
 - `gh stack` navigation (view, up, down, top, bottom, checkout)
-- Package-manager `run` / `install` / `test` for npm, pnpm, yarn, bun (scoped — `yarn`, `bunx`, `pnpm dlx` are **not** wildcarded)
-- `npx tsc`, `eslint`, `prettier`, `vitest`, `jest` (and `bunx` / `yarn` equivalents)
+- pnpm `run` / `install` / `test` / `exec` and workspace-scoped variants (`-F` / `--filter`) — `dlx` and `create` are **denied** (execute arbitrary packages)
 - `Read` / `Edit` / `Write` scoped to the current repo (`./**`) — not the whole filesystem
 
 And denies dangerous defaults: `git push --force` (common orderings), `git reset --hard`, `rm -rf /`, `.env` reads **and** writes, SSH keys (read/edit/write), AWS credentials (read/edit/write), `sudo`.
