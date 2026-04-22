@@ -2,7 +2,7 @@ Boris Cherny's Claude Code workflow tips — parallel sessions, plan mode, subag
 
 # Boris Cherny's Claude Code Workflow Tips
 
-_Source: howborisusesclaudecode.com · Compiled by @cbmono · Version 3.1.0 (2026-04-20)_
+_Source: howborisusesclaudecode.com · Compiled by @cbmono · Version 3.1.1 (2026-04-22)_
 
 ## 1. Parallel Execution
 
@@ -130,16 +130,15 @@ Think of subagents as automations for the most common PR workflows:
   agents/
     build-validator.md
     code-architect.md
-    code-simplifier.md
-    oncall-guide.md
-    verify-app.md
     deep-bug-scan.md
+    oncall-guide.md
+    stack-navigator.md
 ```
 
 **Examples:**
 
-- `code-simplifier` - Cleans up code after Claude finishes
-- `verify-app` - Detailed instructions for end-to-end testing
+- `build-validator` - Typechecks, lints, tests, and builds; `--deep` for full install + e2e
+- `stack-navigator` - Reads `gh stack view` and proposes the next safe action in a stacked-PR flow
 
 ### Leveraging Subagents
 

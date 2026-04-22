@@ -24,7 +24,7 @@ Defaults shipped by this repo. See the [top-level README](../README.md) for inst
 | Agent             | Model  | Purpose                                                                                    | Invoked by commands                           |
 | ----------------- | ------ | ------------------------------------------------------------------------------------------ | --------------------------------------------- |
 | `build-validator` | Sonnet | Typecheck / lint / test / build. `--deep` = clean-install + sequenced unit→integration→e2e | `/verify`                                     |
-| `code-architect`  | Opus   | Staff-level review of staged + unstaged changes                                            | `/plan-review`, `/grill` (architecture angle) |
+| `code-architect`  | Opus   | Staff-level review of staged + unstaged changes                                            | `/plan-review`                                |
 | `deep-bug-scan`   | Opus   | Scans a folder for logic / null / async / SQL / assertion bugs                             | `/scan`                                       |
 | `oncall-guide`    | Sonnet | Diagnoses test or CI failures and classifies the cause                                     | `/verify` (on failure)                        |
 | `stack-navigator` | Sonnet | Reads `gh stack view` and proposes the next safe action                                    | `/stack` (no args)                            |

@@ -28,7 +28,7 @@ Generic Node/TS agents — they infer your toolchain from `package.json` instead
 | Agent               | Model  | Purpose                                                                            | Invoked by commands      |
 | ------------------- | ------ | ---------------------------------------------------------------------------------- | ------------------------ |
 | **build-validator** | Sonnet | Typecheck / lint / test / build. `--deep` = clean-install + sequenced unit→int→e2e | `/verify`                |
-| **code-architect**  | Opus   | Staff-level review of staged + unstaged changes                                    | `/plan-review`, `/grill` |
+| **code-architect**  | Opus   | Staff-level review of staged + unstaged changes                                    | `/plan-review`           |
 | **deep-bug-scan**   | Opus   | Deep scan for logic bugs, null risks, race conditions, SQL issues, weak tests      | `/scan`                  |
 | **oncall-guide**    | Sonnet | Diagnoses test/CI failures and classifies the cause                                | `/verify` (on failure)   |
 | **stack-navigator** | Sonnet | Reads `gh stack view` and proposes the next safe action in a stacked-PR flow       | `/stack` (no args)       |
@@ -48,7 +48,7 @@ One `.md` per command; filename becomes `/<name>`. No frontmatter required; `$AR
 | `/rabbit`      | Run CodeRabbit review on the current branch against `main`                                    | —                             |
 | `/save`        | Persist durable context to memory (+ mempalace if installed), then compact                    | —                             |
 | `/scan [dir]`  | Deep bug scan of a folder; appends findings to `.claude/potential-bugs.md`                    | deep-bug-scan                 |
-| `/stack`       | gh-stack wrapper (bare = smart recommendation, args = specific actions)                       | stack-navigator               |
+| `/stack`       | gh-stack wrapper (bare = smart recommendation, args = specific actions)                       | stack-navigator (no args)     |
 | `/techdebt`    | Scan for duplication/dead code; defer/apply/reject per item. Backlog in `.claude/techdebt.md` | —                             |
 | `/verify`      | Pre-PR gate: typecheck / lint / test / build. `--deep` = full install + e2e                   | build-validator, oncall-guide |
 
