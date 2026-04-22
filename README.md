@@ -61,7 +61,7 @@ Pre-allows common safe operations so you see fewer permission prompts:
 - pnpm `run` / `install` / `test` / `exec` and workspace-scoped variants (`-F` / `--filter`) — `dlx` and `create` are **denied** (execute arbitrary packages)
 - `Read` / `Edit` / `Write` scoped to the current repo (`./**`) — not the whole filesystem
 
-And denies dangerous defaults: `git push --force` (common orderings), `git reset --hard`, `rm -rf /`, `.env` reads **and** writes, SSH keys (read/edit/write), AWS credentials (read/edit/write), `sudo`.
+And denies dangerous defaults: `git push --force` (common orderings), `git reset --hard`, `rm -rf` (all targets — including `node_modules`), `.env` reads **and** writes, `~/.ssh` and `~/.aws` reads/writes/bash commands, `sudo`.
 
 > **Note on deny patterns.** Claude Code matches Bash deny rules positionally, not semantically. We cover the two most common force-push orderings (`git push --force …` and `git push … --force`), but a pathological ordering could still slip through. If that matters to your team, add a `PreToolUse` hook in `settings.local.json`.
 
